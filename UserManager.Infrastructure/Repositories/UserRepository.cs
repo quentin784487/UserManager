@@ -1,4 +1,4 @@
-﻿using UserManager.Core.Domain.Entities;
+﻿using UserManager.Infrastructure.Entities;
 using UserManager.Infrastructure.Persistence;
 using UserManager.Infrastructure.Repositories.Contracts;
 

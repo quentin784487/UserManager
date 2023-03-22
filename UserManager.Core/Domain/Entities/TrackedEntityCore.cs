@@ -1,6 +1,6 @@
 ﻿namespace UserManager.Core.Domain.Entities
 {
-    public class TrackedEntity
+    public class TrackedEntityCore
     {
         public string CreatedBy { get; set; } = "";
         public DateTime CreatedDate { get; set; } = DateTime.Now;

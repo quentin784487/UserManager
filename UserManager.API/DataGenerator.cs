@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UserManager.Core.Domain.Entities;
+using UserManager.Infrastructure.Entities;
 using UserManager.Infrastructure.Persistence;
 
 namespace UserManager.API

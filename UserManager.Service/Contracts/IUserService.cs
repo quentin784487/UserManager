@@ -1,4 +1,5 @@
 ﻿using UserManager.Core.Domain.Entities;
+using UserManager.Infrastructure.Entities;
 
 namespace UserManager.Service.Contracts
 {

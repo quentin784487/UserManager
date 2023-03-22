@@ -6,9 +6,9 @@ namespace UserManager.MockFramework.Services
 {
     public class UserMockService : IUserMockService
     {
-        public IEnumerable<User> GetAllAsync()
+        public IEnumerable<CoreUser> GetAllAsync()
         {
-            var dataFaker = new Faker<User>()
+            var dataFaker = new Faker<CoreUser>()
                  .RuleForType(typeof(string), f => f.Random.Word())
                  .RuleForType(typeof(int), f => f.Random.Number(10, 100))
                  .RuleForType(typeof(DateTime), f => f.Date.Past(5))

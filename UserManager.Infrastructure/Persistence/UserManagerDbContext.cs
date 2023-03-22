@@ -1,6 +1,7 @@
 ﻿using UserManager.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using UserManager.Infrastructure.Entities;
 
 namespace UserManager.Infrastructure.Persistence
 {

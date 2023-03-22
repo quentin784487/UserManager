@@ -13,12 +13,12 @@ namespace UserManager.Core.Domain.Ports.Adapters
             this.database = database;
         }
 
-        public void CreateUser(User user)
+        public void CreateUser(UserCore user)
         {
             database.CreateUser(user);
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(UserCore user)
         {
             database.UpdateUser(user);
         }
@@ -28,12 +28,12 @@ namespace UserManager.Core.Domain.Ports.Adapters
             database.DeleteUser(id);
         }
 
-        public async Task<IEnumerable<User>> GetAllUsers()
+        public async Task<IEnumerable<UserCore>> GetAllUsers()
         {
             return await database.GetAllUsers();
         }
 
-        public async Task<User?> GetUserById(long id)
+        public async Task<UserCore?> GetUserById(long id)
         {
             return await database.GetUserById(id);
         }        

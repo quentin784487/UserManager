@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UserManager.Core\UserManager.Core.csproj" />
+    <ProjectReference Include="..\UserManager.Infrastructure\UserManager.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

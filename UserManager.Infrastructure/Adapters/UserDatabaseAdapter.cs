@@ -1,5 +1,7 @@
-﻿using UserManager.Core.Domain.Entities;
+﻿using AutoMapper;
+using UserManager.Core.Domain.Entities;
 using UserManager.Core.Domain.Ports.Outgoing;
+using UserManager.Infrastructure.Entities;
 using UserManager.Infrastructure.Persistence;
 
 namespace UserManager.Infrastructure.Adapters
@@ -7,21 +9,25 @@ namespace UserManager.Infrastructure.Adapters
     public class UserDatabaseAdapter : IUserDatabasePort
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public UserDatabaseAdapter(IUnitOfWork unitOfWork)
+        public UserDatabaseAdapter(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-        public async void CreateUser(User user)
+        public async void CreateUser(UserCore user)
         {
-            _unitOfWork.UserRepository.Add(user);
+            var mappedUser = _mapper.Map<User>(user);
+            _unitOfWork.UserRepository.Add(mappedUser);
             await _unitOfWork.CompleteAsync();
         }
 
-        public async void UpdateUser(User user)
+        public async void UpdateUser(UserCore user)
         {
-            _unitOfWork.UserRepository.Update(user);
+            var mappedUser = _mapper.Map<User>(user);
+            _unitOfWork.UserRepository.Update(mappedUser);
             await _unitOfWork.CompleteAsync();
         }
 
@@ -30,19 +36,24 @@ namespace UserManager.Infrastructure.Adapters
             var user = await _unitOfWork.UserRepository.GetByIdAsync(id);
             if (user != null)
             {
-                _unitOfWork.UserRepository.Remove(user);
+                var mappedUser = _mapper.Map<User>(user);
+                _unitOfWork.UserRepository.Remove(mappedUser);
                 await _unitOfWork.CompleteAsync();
             }                
         }
 
-        public async Task<IEnumerable<User>> GetAllUsers()
+        public async Task<IEnumerable<UserCore>> GetAllUsers()
         {
-            return await _unitOfWork.UserRepository.GetAllAsync();
+            var users = await _unitOfWork.UserRepository.GetAllAsync();
+            var mappedUsers = _mapper.Map<IEnumerable<UserCore>>(users);
+            return mappedUsers;
         }
 
-        public async Task<User?> GetUserById(long id)
-        {           
-            return await _unitOfWork.UserRepository.GetByIdAsync(id);
+        public async Task<UserCore?> GetUserById(long id)
+        {          
+            var users = await _unitOfWork.UserRepository.GetByIdAsync(id);
+            var mappedUsers = _mapper.Map<UserCore>(users);
+            return mappedUsers;
         }        
     }
 }

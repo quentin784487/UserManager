@@ -1,6 +1,6 @@
 ﻿using UserManager.Shared.Models;
 
-namespace UserManager.Core.Domain.Entities
+namespace UserManager.Infrastructure.Entities
 {
     public class User : TrackedEntity, IAggregateRoot
     {

@@ -2,7 +2,7 @@
 using AutoMapper;
 using UserManager.Service.Contracts;
 using UserManager.API.Models.User;
-using UserManager.Core.Domain.Entities;
+using UserManager.Infrastructure.Entities;
 
 namespace UserManager.API.Controllers
 {

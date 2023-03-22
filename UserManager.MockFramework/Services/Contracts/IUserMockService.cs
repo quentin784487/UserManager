@@ -4,6 +4,6 @@ namespace UserManager.MockFramework.Services.Contracts
 {
     public interface IUserMockService
     {
-        IEnumerable<User> GetAllAsync();
+        IEnumerable<CoreUser> GetAllAsync();
     }
 }
