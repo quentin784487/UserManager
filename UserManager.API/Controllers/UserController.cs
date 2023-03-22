@@ -31,9 +31,9 @@ namespace UserManager.API.Controllers
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public IActionResult Get(int id)
         {
-            var user = await userService.GetByIdAsync(id);
+            var user = userService.GetByIdAsync(id);
             var mappedUser = mapper.Map<UserViewModel>(user);
             return Ok(mappedUser);
         }

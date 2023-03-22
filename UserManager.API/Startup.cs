@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UserManager.Core.Domain;
-using UserManager.Core.Domain.Ports;
 using UserManager.Core.Domain.Ports.Incoming;
 using UserManager.Core.Domain.Ports.Outgoing;
-using UserManager.Infrastructure;
 using UserManager.Infrastructure.Persistence;
 using UserManager.Core.Domain.Ports.Adapters;
 using UserManager.Infrastructure.Adapters;

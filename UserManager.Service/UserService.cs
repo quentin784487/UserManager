@@ -41,9 +41,9 @@ namespace UserManager.Service
             return mappedUsers;
         }
 
-        public async Task<User?> GetByIdAsync(long id)
+        public User? GetByIdAsync(long id)
         {
-            var user = await userPort.GetUserById(id);
+            var user = userPort.GetUserById(id);
             var mappedUser = _mapper.Map<User>(user);
             return mappedUser;
         }
