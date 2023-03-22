@@ -50,3 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+#Packages Folder
+packages/
+
+#obj folders
+obj/
+
+#bin folders
+bin/
+
+#vs folder
+.vs/
