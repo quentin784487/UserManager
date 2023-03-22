@@ -23,7 +23,7 @@ public class UserTests
 
         mockUserService.Setup(x => x.GetByIdAsync(It.Is<long>(i => i == userId))).Returns(user);
         
-        var config = new MapperConfiguration(cfg => {  cfg.CreateMap<User, UserViewModel > (); });
+        var config = new MapperConfiguration(cfg => {  cfg.CreateMap<User, UserViewModel> (); });
 
         // Act
         var userController = new UserController(new Mapper(config), mockUserService.Object);
