@@ -5,8 +5,8 @@ namespace UserManager.Service.Contracts
 {
     public interface IUserService
     {
-        Task<IEnumerable<User>> GetAllAsync();
-        User? GetByIdAsync(long id);
+        IEnumerable<User> GetAll();
+        User? GetById(long id);
         void Create(User user);
         void Update(User user);
         void Delete(int id);

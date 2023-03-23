@@ -22,9 +22,9 @@ namespace UserManager.API.Controllers
 
         // GET: api/<UsersController>
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public IActionResult GetAll()
         {            
-            var users = await userService.GetAllAsync();
+            var users = userService.GetAll();
             var mappedUsers = mapper.Map<IEnumerable<UserViewModel>>(users);
             return Ok(mappedUsers);
         }
@@ -33,7 +33,7 @@ namespace UserManager.API.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var user = userService.GetByIdAsync(id);
+            var user = userService.GetById(id);
             var mappedUser = mapper.Map<UserViewModel>(user);
             return Ok(mappedUser);
         }

@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManager.Service", "User
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManager.Shared", "UserManager.Shared\UserManager.Shared.csproj", "{9D9834DC-FF41-4366-83C7-21E4E9277781}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManager.Tests", "UserManager.Tests\UserManager.Tests.csproj", "{A6E24166-BD1D-43A7-933C-F79A7A1F3F19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManager.Tests", "UserManager.Tests\UserManager.Tests.csproj", "{A6E24166-BD1D-43A7-933C-F79A7A1F3F19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

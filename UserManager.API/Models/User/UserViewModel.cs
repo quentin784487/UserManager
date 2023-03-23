@@ -2,7 +2,7 @@
 {
     public class UserViewModel : TrackedEntityViewModel
     {
-        public int? Id { get; set; } = 0;
+        public long? Id { get; set; } = 0;
         public string? Firstname { get; set; }
         public string? Lastname { get; set; }
         public string? Username { get; set; }

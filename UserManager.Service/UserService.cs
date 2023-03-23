@@ -34,14 +34,14 @@ namespace UserManager.Service
             userPort.DeleteUser(id);
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public IEnumerable<User> GetAll()
         {
-            var users = await userPort.GetAllUsers();
+            var users = userPort.GetAllUsers();
             var mappedUsers = _mapper.Map<IEnumerable<User>>(users);
             return mappedUsers;
         }
 
-        public User? GetByIdAsync(long id)
+        public User? GetById(long id)
         {
             var user = userPort.GetUserById(id);
             var mappedUser = _mapper.Map<User>(user);
