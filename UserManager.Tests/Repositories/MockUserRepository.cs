@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bogus;
 using UserManager.Infrastructure.Entities;
 
 namespace UserManager.Tests.Repositories
@@ -9,13 +9,20 @@ namespace UserManager.Tests.Repositories
 
         public MockUserRepository()
         {
-            users = new List<User>() {
-                new User() { Id = 1, Firstname = "firstname", Lastname = "lastname", Email = "email", Username = "username", Password = "password", IsActive = true, CreatedBy = "createdby", CreatedDate = DateTime.Now, ModifiedBy = "modifiedby", ModifiedDate = DateTime.Now },
-                new User() { Id = 2, Firstname = "firstname", Lastname = "lastname", Email = "email", Username = "username", Password = "password", IsActive = true, CreatedBy = "createdby", CreatedDate = DateTime.Now, ModifiedBy = "modifiedby", ModifiedDate = DateTime.Now },
-                new User() { Id = 3, Firstname = "firstname", Lastname = "lastname", Email = "email", Username = "username", Password = "password", IsActive = true, CreatedBy = "createdby", CreatedDate = DateTime.Now, ModifiedBy = "modifiedby", ModifiedDate = DateTime.Now },
-                new User() { Id = 4, Firstname = "firstname", Lastname = "lastname", Email = "email", Username = "username", Password = "password", IsActive = true, CreatedBy = "createdby", CreatedDate = DateTime.Now, ModifiedBy = "modifiedby", ModifiedDate = DateTime.Now },
-                new User() { Id = 5, Firstname = "firstname", Lastname = "lastname", Email = "email", Username = "username", Password = "password", IsActive = true, CreatedBy = "createdby", CreatedDate = DateTime.Now, ModifiedBy = "modifiedby", ModifiedDate = DateTime.Now }
-            }.AsQueryable();
+            var user = new Faker<User>()
+                .RuleFor(x => x.Id, y => y.Random.Number(1, 100))
+                .RuleFor(x => x.Firstname, y => y.Person.FirstName)
+                .RuleFor(x => x.Lastname, y => y.Person.LastName)
+                .RuleFor(x => x.Email, y => y.Person.Email)
+                .RuleFor(x => x.Username, y => y.Person.UserName)
+                .RuleFor(x => x.Password, y => y.Random.Guid().ToString())
+                .RuleFor(x => x.IsActive, true)
+                .RuleFor(x => x.CreatedBy, y => y.Person.UserName)
+                .RuleFor(x => x.CreatedDate, y => DateTime.Now)
+                .RuleFor(x => x.ModifiedBy, y => y.Person.UserName)
+                .RuleFor(x => x.ModifiedDate, y => DateTime.Now);
+
+            users = user.Generate(100).ToList().AsQueryable();
         }
 
         public async Task<IEnumerable<User>> GetAll()
