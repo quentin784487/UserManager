@@ -43,18 +43,18 @@ public class UserTests : TestsBase
     public async void Get_WhenCalled_GetById_ReturnsOkResult()
     {
         // Arrange
-        var mockUser = mockRepository.GetById(1);
+        var mockUser = mockRepository.GetById(777);
 
         // Act
         var mockUserService = new Mock<IUserService>();
 
-        mockUserService.Setup(x => x.GetById(It.Is<long>(i => i == 1))).Returns(mockUser);
+        mockUserService.Setup(x => x.GetById(It.Is<long>(i => i == 777))).Returns(mockUser);
         
         var config = new MapperConfiguration(cfg => { cfg.CreateMap<User, UserViewModel>(); });
 
         var userController = new UserController(new Mapper(config), mockUserService.Object);
 
-        var okResult = await userController.Get(1);
+        var okResult = await userController.Get(777);
 
         // Assert
         Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
@@ -64,18 +64,18 @@ public class UserTests : TestsBase
     public async void Get_PropertiesEqual_GetById_ReturnsOkResult()
     {
         // Arrange
-        var mockUser = mockRepository.GetById(1);
+        var mockUser = mockRepository.GetById(777);
 
         // Act
         var mockUserService = new Mock<IUserService>();
 
-        mockUserService.Setup(x => x.GetById(It.Is<long>(i => i == 1))).Returns(mockUser);
+        mockUserService.Setup(x => x.GetById(It.Is<long>(i => i == 777))).Returns(mockUser);
 
         var config = new MapperConfiguration(cfg => { cfg.CreateMap<User, UserViewModel>(); });
 
         var userController = new UserController(new Mapper(config), mockUserService.Object);
 
-        var okResult = await userController.Get(1);
+        var okResult = await userController.Get(777);
 
         // Assert          
         Assert.NotNull(okResult);

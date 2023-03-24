@@ -10,7 +10,7 @@ namespace UserManager.Tests.Repositories
         public MockUserRepository()
         {
             var user = new Faker<User>()
-                .RuleFor(x => x.Id, y => y.Random.Number(1, 10))
+                .RuleFor(x => x.Id, y => 777)
                 .RuleFor(x => x.Firstname, y => y.Person.FirstName)
                 .RuleFor(x => x.Lastname, y => y.Person.LastName)
                 .RuleFor(x => x.Email, y => y.Person.Email)
