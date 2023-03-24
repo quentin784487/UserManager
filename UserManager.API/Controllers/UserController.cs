@@ -22,16 +22,16 @@ namespace UserManager.API.Controllers
 
         // GET: api/<UsersController>
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {            
-            var users = userService.GetAll();
+            var users = await userService.GetAll();
             var mappedUsers = mapper.Map<IEnumerable<UserViewModel>>(users);
             return Ok(mappedUsers);
         }
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var user = userService.GetById(id);
             var mappedUser = mapper.Map<UserViewModel>(user);
@@ -40,7 +40,7 @@ namespace UserManager.API.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        public IActionResult Post([FromBody] UserViewModel model)
+        public async Task<IActionResult> Post([FromBody] UserViewModel model)
         {
             var user = mapper.Map<UserViewModel, User>(model);
             userService.Create(user);
@@ -49,7 +49,7 @@ namespace UserManager.API.Controllers
 
         // PUT api/<UsersController>/5
         [HttpPut]
-        public IActionResult Put([FromBody] UserViewModel model)
+        public async Task<IActionResult> Put([FromBody] UserViewModel model)
         {
             var user = mapper.Map<UserViewModel, User>(model);
             userService.Update(user);
@@ -58,7 +58,7 @@ namespace UserManager.API.Controllers
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             userService.Delete(id);
             return Ok();

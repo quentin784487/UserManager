@@ -5,7 +5,7 @@
         void Add(TEntity entity);
         void Remove(TEntity entity);
         void Update(TEntity entity);
-        Task<IEnumerable<TEntity>> GetAllAsync();
-        Task<TEntity?> GetByIdAsync(object id);
+        Task<IEnumerable<TEntity>> GetAll();
+        Task<TEntity?> GetById(object id);
     }
 }

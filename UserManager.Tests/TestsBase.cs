@@ -8,16 +8,22 @@ namespace UserManager.Tests
         {
             foreach (PropertyInfo mockProperty in mockData.GetType().GetProperties())
             {
-                PropertyInfo actualProperty = actualData.GetType().GetProperties().Where(x => x.Name == mockProperty.Name).FirstOrDefault();
+                PropertyInfo? actualProperty = actualData.GetType().GetProperties().Where(x => x.Name == mockProperty.Name).FirstOrDefault();
 
                 if (actualProperty != null)
                 {
                     if (mockProperty.Name == actualProperty.Name)
                     {
-                        if (mockProperty.GetValue(mockData).GetType().Equals(typeof(Int64)))
-                            Assert.Equal(actualProperty.GetValue(actualData).ToString(), mockProperty.GetValue(mockData).ToString());
-                        else
-                            Assert.Equal(actualProperty.GetValue(actualData), mockProperty.GetValue(mockData));
+                        object? mockValue = mockProperty.GetValue(mockData);
+                        object? actualValue = mockProperty.GetValue(actualData);
+
+                        if (mockValue != null && actualValue != null)
+                        {
+                            if (mockValue.GetType().Equals(typeof(Int64)))
+                                Assert.Equal(actualValue.ToString(), mockValue.ToString());
+                            else
+                                Assert.Equal(actualValue, actualValue);
+                        }                        
                     }
                 }                
             }

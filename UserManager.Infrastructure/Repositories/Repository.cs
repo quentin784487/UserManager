@@ -30,12 +30,12 @@ namespace UserManager.Infrastructure.Repositories
             _dbSet.Remove(entity);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public async Task<IEnumerable<TEntity>> GetAll()
         {
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<TEntity?> GetByIdAsync(object id)
+        public async Task<TEntity?> GetById(object id)
         {
             return await _dbSet.FindAsync(id);
         }

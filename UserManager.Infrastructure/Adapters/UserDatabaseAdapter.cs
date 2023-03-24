@@ -33,7 +33,7 @@ namespace UserManager.Infrastructure.Adapters
 
         public async void DeleteUser(int id)
         {
-            var user = await _unitOfWork.UserRepository.GetByIdAsync(id);
+            var user = _unitOfWork.UserRepository.GetById(id);
             if (user != null)
             {
                 var mappedUser = _mapper.Map<User>(user);
@@ -44,14 +44,14 @@ namespace UserManager.Infrastructure.Adapters
 
         public async Task<IEnumerable<UserCore>> GetAllUsers()
         {
-            var users = await _unitOfWork.UserRepository.GetAllAsync();
+            var users = _unitOfWork.UserRepository.GetAll();
             var mappedUsers = _mapper.Map<IEnumerable<UserCore>>(users);
             return mappedUsers;
         }
 
         public async Task<UserCore?> GetUserById(long id)
         {          
-            var users = await _unitOfWork.UserRepository.GetByIdAsync(id);
+            var users = _unitOfWork.UserRepository.GetById(id);
             var mappedUsers = _mapper.Map<UserCore>(users);
             return mappedUsers;
         }        
