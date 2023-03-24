@@ -65,7 +65,7 @@ namespace UserManager.API.Controllers
         }
 
         // GET: api/<UsersController>/username/password
-        [HttpGet("{username}/{password}")]
+        [HttpGet("Users/Authenticate")]
         public async Task<IActionResult> Authenticate(string username, string password)
         {
             return Ok(await userService.Authenticate(username, password));
