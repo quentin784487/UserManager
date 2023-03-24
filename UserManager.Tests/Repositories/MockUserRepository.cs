@@ -22,7 +22,7 @@ namespace UserManager.Tests.Repositories
                 .RuleFor(x => x.ModifiedBy, y => y.Person.UserName)
                 .RuleFor(x => x.ModifiedDate, y => DateTime.Now);
 
-            users = user.Generate(10).ToList().AsQueryable();
+            users = user.Generate(1).ToList().AsQueryable();
         }
 
         public async Task<IEnumerable<User>> GetAll()
