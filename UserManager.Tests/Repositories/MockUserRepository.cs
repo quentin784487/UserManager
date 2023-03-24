@@ -20,12 +20,12 @@ namespace UserManager.Tests.Repositories
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            return await users.ToListAsync();
+            return await Task.FromResult(users.ToList());
         }
 
         public async Task<User> GetById(int id)
         {
-            return await users.Where(x => x.Id == id).FirstAsync();
+            return await Task.FromResult(users.Where(x => x.Id == id).First());
         }
     }
 }

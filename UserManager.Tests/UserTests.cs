@@ -22,14 +22,14 @@ public class UserTests : TestsBase
     public async void Get_WhenCalled_GetAll_ReturnsOkResult()
     {
         // Arrange
-        var mockUsers = await mockRepository.GetAll();
+        var mockUsers = mockRepository.GetAll();
 
         // Act
         var mockUserService = new Mock<IUserService>();
 
-        mockUserService.Setup(x => x.GetAll()).Returns((Task<IEnumerable<User>>)mockUsers);
+        mockUserService.Setup(x => x.GetAll()).Returns(mockUsers);
 
-        var config = new MapperConfiguration(cfg => { cfg.CreateMap<User, UserViewModel>(); });
+        var config = new MapperConfiguration(cfg => { cfg.CreateMap<User, UserViewModel> (); });
 
         var userController = new UserController(new Mapper(config), mockUserService.Object);
 
@@ -70,17 +70,17 @@ public class UserTests : TestsBase
         var mockUserService = new Mock<IUserService>();
 
         mockUserService.Setup(x => x.GetById(It.Is<long>(i => i == 1))).Returns(mockUser);
-        
+
         var config = new MapperConfiguration(cfg => { cfg.CreateMap<User, UserViewModel>(); });
 
         var userController = new UserController(new Mapper(config), mockUserService.Object);
 
-        var actionResult = await userController.Get(1);
+        var okResult = await userController.Get(1);
 
         // Assert          
-        Assert.NotNull(actionResult);
+        Assert.NotNull(okResult);
 
-        UserViewModel? actualUser = (actionResult as OkObjectResult).Value as UserViewModel;
+        UserViewModel? actualUser = (okResult as OkObjectResult).Value as UserViewModel;
 
         Assert.NotNull(mockUser);
         Assert.NotNull(actualUser);

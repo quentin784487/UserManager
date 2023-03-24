@@ -33,7 +33,7 @@ namespace UserManager.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var user = userService.GetById(id);
+            var user = await userService.GetById(id);
             var mappedUser = mapper.Map<UserViewModel>(user);
             return Ok(mappedUser);
         }

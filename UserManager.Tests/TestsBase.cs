@@ -15,7 +15,7 @@ namespace UserManager.Tests
                     if (mockProperty.Name == actualProperty.Name)
                     {
                         object? mockValue = mockProperty.GetValue(mockData);
-                        object? actualValue = mockProperty.GetValue(actualData);
+                        object? actualValue = actualProperty.GetValue(actualData);
 
                         if (mockValue != null && actualValue != null)
                         {
