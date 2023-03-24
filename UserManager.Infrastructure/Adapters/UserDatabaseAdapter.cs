@@ -44,14 +44,14 @@ namespace UserManager.Infrastructure.Adapters
 
         public async Task<IEnumerable<UserCore>> GetAllUsers()
         {
-            var users = _unitOfWork.UserRepository.GetAll();
+            var users = await _unitOfWork.UserRepository.GetAll();
             var mappedUsers = _mapper.Map<IEnumerable<UserCore>>(users);
             return mappedUsers;
         }
 
         public async Task<UserCore?> GetUserById(long id)
         {          
-            var users = _unitOfWork.UserRepository.GetById(id);
+            var users = await _unitOfWork.UserRepository.GetById(id);
             var mappedUsers = _mapper.Map<UserCore>(users);
             return mappedUsers;
         }        
