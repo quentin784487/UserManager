@@ -47,5 +47,10 @@ namespace UserManager.Service
             var mappedUser = _mapper.Map<User>(user);
             return mappedUser;
         }
+
+        public async Task<bool> Authenticate(string username, string password)
+        {
+            return await userPort.AuthenticateUser(username, password);
+        }
     }
 }

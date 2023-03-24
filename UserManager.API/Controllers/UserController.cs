@@ -63,5 +63,12 @@ namespace UserManager.API.Controllers
             userService.Delete(id);
             return Ok();
         }
+
+        // GET: api/<UsersController>/username/password
+        [HttpGet("{username}/{password}")]
+        public async Task<IActionResult> Authenticate(string username, string password)
+        {
+            return Ok(await userService.Authenticate(username, password));
+        }
     }
 }

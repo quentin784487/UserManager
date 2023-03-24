@@ -40,42 +40,42 @@ public class UserTests : TestsBase
     }
 
     [Fact]
-    public async void Get_WhenCalled_GetById_ReturnsOkResult()
+    public async void Get_WhenCalled_GetById()
     {
         // Arrange
-        var mockUser = mockRepository.GetById(777);
+        var mockUser = mockRepository.GetById(1);
 
         // Act
         var mockUserService = new Mock<IUserService>();
 
-        mockUserService.Setup(x => x.GetById(It.Is<long>(i => i == 777))).Returns(mockUser);
+        mockUserService.Setup(x => x.GetById(It.Is<long>(i => i == 1))).Returns(mockUser);
         
         var config = new MapperConfiguration(cfg => { cfg.CreateMap<User, UserViewModel>(); });
 
         var userController = new UserController(new Mapper(config), mockUserService.Object);
 
-        var okResult = await userController.Get(777);
+        var okResult = await userController.Get(1);
 
         // Assert
         Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
     }
 
     [Fact]
-    public async void Get_PropertiesEqual_GetById_ReturnsOkResult()
+    public async void Get_PropertiesEqual_GetById()
     {
         // Arrange
-        var mockUser = mockRepository.GetById(777);
+        var mockUser = mockRepository.GetById(1);
 
         // Act
         var mockUserService = new Mock<IUserService>();
 
-        mockUserService.Setup(x => x.GetById(It.Is<long>(i => i == 777))).Returns(mockUser);
+        mockUserService.Setup(x => x.GetById(It.Is<long>(i => i == 1))).Returns(mockUser);
 
         var config = new MapperConfiguration(cfg => { cfg.CreateMap<User, UserViewModel>(); });
 
         var userController = new UserController(new Mapper(config), mockUserService.Object);
 
-        var okResult = await userController.Get(777);
+        var okResult = await userController.Get(1);
 
         // Assert          
         Assert.NotNull(okResult);
@@ -90,5 +90,28 @@ public class UserTests : TestsBase
             //Implementing reflection in base method to reduce code and save time.
             AssertEqual(mockUser, actualUser);
         }
+    }
+
+    [Fact]
+    public async void Get_ConditionIsTrue_AuthenticateUser()
+    {
+        // Arrange
+        var isAuthenticated = mockRepository.Autehnticate("username", "password");
+
+        // Act
+        var mockUserService = new Mock<IUserService>();
+
+        mockUserService.Setup(x => x.Authenticate(It.Is<string>(i => i == "username"), It.Is<string>(i => i == "password"))).Returns(isAuthenticated);
+
+        var config = new MapperConfiguration(cfg => { cfg.CreateMap<User, UserViewModel>(); });
+
+        var userController = new UserController(new Mapper(config), mockUserService.Object);
+
+        var okResult = await userController.Authenticate("username", "password");
+
+        // Assert         
+        bool? isTrue = (okResult as OkObjectResult).Value as bool?;
+
+        Assert.True(isTrue);
     }
 }

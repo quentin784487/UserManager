@@ -54,6 +54,11 @@ namespace UserManager.Infrastructure.Adapters
             var users = await _unitOfWork.UserRepository.GetById(id);
             var mappedUsers = _mapper.Map<UserCore>(users);
             return mappedUsers;
-        }        
+        }
+
+        public async Task<bool> AuthenticateUser(string username, string password)
+        {
+            return await _unitOfWork.UserRepository.AuthenticateUSer(username, password);
+        }
     }
 }

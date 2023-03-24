@@ -36,6 +36,11 @@ namespace UserManager.Core.Domain.Ports.Adapters
         public async Task<UserCore?> GetUserById(long id)
         {
             return await database.GetUserById(id);
-        }        
+        }
+
+        public async Task<bool> AuthenticateUser(string username, string password)
+        {
+            return await database.AuthenticateUser(username, password);
+        }
     }
 }

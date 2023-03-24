@@ -7,7 +7,7 @@ namespace UserManager.Infrastructure.Repositories
     {
         protected readonly DbContext Context;
 
-        private readonly DbSet<TEntity> _dbSet;
+        protected readonly DbSet<TEntity> _dbSet;
 
         public Repository(DbContext context)
         {

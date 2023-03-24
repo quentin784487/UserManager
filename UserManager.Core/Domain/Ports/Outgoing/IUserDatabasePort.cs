@@ -9,5 +9,6 @@ namespace UserManager.Core.Domain.Ports.Outgoing
         void CreateUser(UserCore user);
         void UpdateUser(UserCore user);
         void DeleteUser(int id);
+        Task<bool> AuthenticateUser(string username, string password);
     }
 }

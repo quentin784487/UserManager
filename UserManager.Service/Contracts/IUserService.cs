@@ -10,5 +10,6 @@ namespace UserManager.Service.Contracts
         void Delete(int id);
         Task<IEnumerable<User>> GetAll();
         Task<User?> GetById(long id);
+        Task<bool> Authenticate(string username, string password);
     }
 }
