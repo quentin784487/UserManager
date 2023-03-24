@@ -10,7 +10,7 @@ namespace UserManager.Tests.Repositories
         public MockUserRepository()
         {
             var user = new Faker<User>()
-                .RuleFor(x => x.Id, y => y.Random.Number(1, 100))
+                .RuleFor(x => x.Id, y => y.Random.Number(1, 10))
                 .RuleFor(x => x.Firstname, y => y.Person.FirstName)
                 .RuleFor(x => x.Lastname, y => y.Person.LastName)
                 .RuleFor(x => x.Email, y => y.Person.Email)
@@ -22,7 +22,7 @@ namespace UserManager.Tests.Repositories
                 .RuleFor(x => x.ModifiedBy, y => y.Person.UserName)
                 .RuleFor(x => x.ModifiedDate, y => DateTime.Now);
 
-            users = user.Generate(100).ToList().AsQueryable();
+            users = user.Generate(10).ToList().AsQueryable();
         }
 
         public async Task<IEnumerable<User>> GetAll()
