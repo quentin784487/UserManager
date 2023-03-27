@@ -5,6 +5,6 @@ namespace UserManager.Infrastructure.Repositories.Contracts
 {
     public interface IUserRepository : IRepository<User>
     {
-        Task<bool> AuthenticateUSer(string username, string password);
+        Task<bool> AuthenticateUser(string username, string password);
     }
 }

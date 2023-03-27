@@ -18,7 +18,7 @@ namespace UserManager.Infrastructure.Repositories
             get { return Context as UserManagerDbContext; }
         }
 
-        public async Task<bool> AuthenticateUSer(string username, string password)
+        public async Task<bool> AuthenticateUser(string username, string password)
         {
             return await _dbSet.Where(x => x.Username == username && x.Password == password).AnyAsync();
         }

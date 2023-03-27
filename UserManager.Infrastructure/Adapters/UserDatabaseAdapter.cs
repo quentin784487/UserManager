@@ -58,7 +58,7 @@ namespace UserManager.Infrastructure.Adapters
 
         public async Task<bool> AuthenticateUser(string username, string password)
         {
-            return await _unitOfWork.UserRepository.AuthenticateUSer(username, password);
+            return await _unitOfWork.UserRepository.AuthenticateUser(username, password);
         }
     }
 }
