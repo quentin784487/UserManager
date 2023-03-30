@@ -2,6 +2,8 @@
 using AutoMapper;
 using UserManager.Service.Contracts;
 using UserManager.API.Models.User;
+using UserManager.Core.Domain.Entities;
+using UserManager.Core.Domain.Ports.Incoming;
 using UserManager.Infrastructure.Entities;
 
 namespace UserManager.API.Controllers
@@ -12,19 +14,19 @@ namespace UserManager.API.Controllers
     public class UserController : ControllerBase
     {        
         private readonly IMapper mapper;
-        private readonly IUserService userService;
+        private readonly IUserPort userPort;
 
-        public UserController(IMapper mapper, IUserService userService)
+        public UserController(IMapper mapper, IUserPort userPort)
         {
             this.mapper = mapper;
-            this.userService = userService;
+            this.userPort = userPort;
         }
 
         // GET: api/<UsersController>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {            
-            var users = await userService.GetAll();
+            var users = await userPort.GetAllUsers();
             var mappedUsers = mapper.Map<IEnumerable<UserViewModel>>(users);
             return Ok(mappedUsers);
         }
@@ -33,7 +35,7 @@ namespace UserManager.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var user = await userService.GetById(id);
+            var user = await userPort.GetUserById(id);
             var mappedUser = mapper.Map<UserViewModel>(user);
             return Ok(mappedUser);
         }
@@ -42,8 +44,8 @@ namespace UserManager.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] UserViewModel model)
         {
-            var user = mapper.Map<UserViewModel, User>(model);
-            userService.Create(user);
+            var user = mapper.Map<UserViewModel, UserCore>(model);
+            userPort.CreateUser(user);
             return Ok();
         }
 
@@ -51,8 +53,8 @@ namespace UserManager.API.Controllers
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] UserViewModel model)
         {
-            var user = mapper.Map<UserViewModel, User>(model);
-            userService.Update(user);
+            var user = mapper.Map<UserViewModel, UserCore>(model);
+            userPort.UpdateUser(user);
             return Ok();
         }
 
@@ -60,7 +62,7 @@ namespace UserManager.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            userService.Delete(id);
+            userPort.DeleteUser(id);
             return Ok();
         }
 
@@ -68,7 +70,7 @@ namespace UserManager.API.Controllers
         [HttpGet("Users/Authenticate{username}/{password}")]
         public async Task<IActionResult> Authenticate(string username, string password)
         {
-            return Ok(await userService.Authenticate(username, password));
+            return Ok(await userPort.AuthenticateUser(username, password));
         }
     }
 }

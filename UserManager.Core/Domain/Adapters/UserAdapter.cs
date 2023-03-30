@@ -6,41 +6,41 @@ namespace UserManager.Core.Domain.Ports.Adapters
 {
     public class UserAdapter : IUserPort
     {
-        private IUserDatabasePort database;
+        private IUserDatabasePort userDatabasePort;
 
-        public UserAdapter(IUserDatabasePort database)
+        public UserAdapter(IUserDatabasePort userDatabasePort)
         {
-            this.database = database;
+            this.userDatabasePort = userDatabasePort;
         }
 
         public void CreateUser(UserCore user)
         {
-            database.CreateUser(user);
+            userDatabasePort.CreateUser(user);
         }
 
         public void UpdateUser(UserCore user)
         {
-            database.UpdateUser(user);
+            userDatabasePort.UpdateUser(user);
         }
 
         public void DeleteUser(int id)
         {
-            database.DeleteUser(id);
+            userDatabasePort.DeleteUser(id);
         }
 
         public async Task<IEnumerable<UserCore>> GetAllUsers()
         {
-            return await database.GetAllUsers();
+            return await userDatabasePort.GetAllUsers();
         }
 
         public async Task<UserCore?> GetUserById(long id)
         {
-            return await database.GetUserById(id);
+            return await userDatabasePort.GetUserById(id);
         }
 
         public async Task<bool> AuthenticateUser(string username, string password)
         {
-            return await database.AuthenticateUser(username, password);
+            return await userDatabasePort.AuthenticateUser(username, password);
         }
     }
 }

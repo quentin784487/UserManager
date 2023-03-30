@@ -10,4 +10,10 @@
     <ProjectReference Include="..\UserManager.Shared\UserManager.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Domain\Ports\Outgoing\Email" />
+    <Folder Include="Domain\Ports\Outgoing\ServiceBus" />
+    <Folder Include="Domain\Service" />
+  </ItemGroup>
+
 </Project>
